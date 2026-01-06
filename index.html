@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAFO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>FAFO on Bonk</h1>
+    <p class="contract-address">ca: DcUwezFD5HaRKupjxw82d91S7fh3Qn7gGagHZNKEbonk</p>
+    <div class="content-wrapper">
+        <div class="chart-container">
+            <svg class="chart-svg" viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Glow filters -->
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    <filter id="strongGlow">
+                        <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                
+                <!-- World map background from SVG file -->
+                <image href="images/world.svg" x="120" y="40" width="520" height="360" 
+                       opacity="0.4" class="world-map-bg" preserveAspectRatio="xMidYMid slice"/>
+                
+                <!-- Coordinate grid with labels -->
+                <g class="grid-lines">
+                    <line class="grid-h" x1="120" y1="130" x2="640" y2="130" stroke="rgba(100, 200, 255, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                    <line class="grid-h" x1="120" y1="220" x2="640" y2="220" stroke="rgba(100, 200, 255, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                    <line class="grid-h" x1="120" y1="310" x2="640" y2="310" stroke="rgba(100, 200, 255, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                    <line class="grid-v" x1="250" y1="40" x2="250" y2="400" stroke="rgba(100, 200, 255, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                    <line class="grid-v" x1="380" y1="40" x2="380" y2="400" stroke="rgba(100, 200, 255, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                    <line class="grid-v" x1="510" y1="40" x2="510" y2="400" stroke="rgba(100, 200, 255, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                </g>
+                
+                <!-- Coordinate labels -->
+                <g class="coordinates">
+                    <text x="100" y="135" fill="rgba(100, 200, 255, 0.6)" font-size="10">60°N</text>
+                    <text x="100" y="225" fill="rgba(100, 200, 255, 0.6)" font-size="10">30°N</text>
+                    <text x="100" y="315" fill="rgba(100, 200, 255, 0.6)" font-size="10">0°</text>
+                    <text x="100" y="405" fill="rgba(100, 200, 255, 0.6)" font-size="10">30°S</text>
+                    
+                    <text x="245" y="420" fill="rgba(100, 200, 255, 0.6)" font-size="10">60°W</text>
+                    <text x="375" y="420" fill="rgba(100, 200, 255, 0.6)" font-size="10">0°</text>
+                    <text x="505" y="420" fill="rgba(100, 200, 255, 0.6)" font-size="10">60°E</text>
+                    <text x="635" y="420" fill="rgba(100, 200, 255, 0.6)" font-size="10">120°E</text>
+                </g>
+                
+                <!-- Tick marks on Y axis -->
+                <g class="tick-marks">
+                    <line x1="115" y1="130" x2="125" y2="130" stroke="#fff" stroke-width="2"/>
+                    <line x1="115" y1="220" x2="125" y2="220" stroke="#fff" stroke-width="2"/>
+                    <line x1="115" y1="310" x2="125" y2="310" stroke="#fff" stroke-width="2"/>
+                    <line x1="115" y1="400" x2="125" y2="400" stroke="#fff" stroke-width="2"/>
+                </g>
+                
+                <!-- Tick marks on X axis -->
+                <g class="tick-marks">
+                    <line x1="250" y1="395" x2="250" y2="405" stroke="#fff" stroke-width="2"/>
+                    <line x1="380" y1="395" x2="380" y2="405" stroke="#fff" stroke-width="2"/>
+                    <line x1="510" y1="395" x2="510" y2="405" stroke="#fff" stroke-width="2"/>
+                    <line x1="640" y1="395" x2="640" y2="405" stroke="#fff" stroke-width="2"/>
+                </g>
+                
+                <!-- Main Axes -->
+                <line class="axis-y" x1="120" y1="40" x2="120" y2="400" stroke="#fff" stroke-width="3" filter="url(#glow)"/>
+                <line class="axis-x" x1="120" y1="400" x2="640" y2="400" stroke="#fff" stroke-width="3" filter="url(#glow)"/>
+                
+                <!-- Axis arrows -->
+                <polygon class="axis-arrow" points="120,35 115,45 125,45" fill="#fff" filter="url(#glow)"/>
+                <polygon class="axis-arrow" points="645,400 635,395 635,405" fill="#fff" filter="url(#glow)"/>
+                
+                <!-- Chart Line Shadow (glow effect) -->
+                <line class="chart-line-shadow" x1="120" y1="400" x2="640" y2="40" 
+                      stroke="#ff4444" stroke-width="8" opacity="0.3" filter="url(#strongGlow)"/>
+                
+                <!-- Main Chart Line -->
+                <line class="chart-line" x1="120" y1="400" x2="640" y2="40" 
+                      stroke="#ff4444" stroke-width="4" filter="url(#glow)"/>
+                
+                <!-- Animated Ships -->
+                <g class="ship ship-1">
+                    <path d="M 0,-8 L 12,0 L 0,8 L -6,0 Z" fill="#4CAF50" stroke="#66FF66" stroke-width="1" filter="url(#glow)"/>
+                    <circle cx="0" cy="0" r="10" fill="none" stroke="#4CAF50" stroke-width="1" opacity="0.3">
+                        <animate attributeName="r" values="10;15;10" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <animateMotion dur="8s" repeatCount="indefinite" begin="2s">
+                        <mpath href="#shipPath1"/>
+                    </animateMotion>
+                </g>
+                
+                <g class="ship ship-2">
+                    <path d="M 0,-8 L 12,0 L 0,8 L -6,0 Z" fill="#2196F3" stroke="#66CCFF" stroke-width="1" filter="url(#glow)"/>
+                    <circle cx="0" cy="0" r="10" fill="none" stroke="#2196F3" stroke-width="1" opacity="0.3">
+                        <animate attributeName="r" values="10;15;10" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <animateMotion dur="10s" repeatCount="indefinite" begin="3s">
+                        <mpath href="#shipPath2"/>
+                    </animateMotion>
+                </g>
+                
+                <!-- Animated Planes -->
+                <g class="plane plane-1">
+                    <path d="M 0,-3 L 15,0 L 0,3 L 3,0 Z" fill="#FF9800" stroke="#FFCC00" stroke-width="1" filter="url(#glow)"/>
+                    <line x1="-5" y1="-8" x2="-5" y2="8" stroke="#FF9800" stroke-width="2"/>
+                    <circle cx="0" cy="0" r="12" fill="none" stroke="#FF9800" stroke-width="1" opacity="0.2">
+                        <animate attributeName="r" values="12;18;12" dur="1.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.2;0;0.2" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <animateMotion dur="6s" repeatCount="indefinite" begin="2.5s">
+                        <mpath href="#planePath1"/>
+                    </animateMotion>
+                </g>
+                
+                <g class="plane plane-2">
+                    <path d="M 0,-3 L 15,0 L 0,3 L 3,0 Z" fill="#E91E63" stroke="#FF66B2" stroke-width="1" filter="url(#glow)"/>
+                    <line x1="-5" y1="-8" x2="-5" y2="8" stroke="#E91E63" stroke-width="2"/>
+                    <circle cx="0" cy="0" r="12" fill="none" stroke="#E91E63" stroke-width="1" opacity="0.2">
+                        <animate attributeName="r" values="12;18;12" dur="1.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.2;0;0.2" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <animateMotion dur="7s" repeatCount="indefinite" begin="4s">
+                        <mpath href="#planePath2"/>
+                    </animateMotion>
+                </g>
+                
+                <!-- Invisible paths for animation -->
+                <path id="shipPath1" d="M 120,350 Q 250,280 380,250 T 640,180" fill="none" opacity="0"/>
+                <path id="shipPath2" d="M 150,400 Q 300,320 450,280 T 620,200" fill="none" opacity="0"/>
+                <path id="planePath1" d="M 120,300 Q 380,200 640,100" fill="none" opacity="0"/>
+                <path id="planePath2" d="M 140,380 Q 350,250 580,120" fill="none" opacity="0"/>
+                
+                <!-- Axis Labels -->
+                <text class="axis-label x-axis-label" x="380" y="460" 
+                      fill="#fff" font-size="28" font-weight="bold" text-anchor="middle"
+                      filter="url(#glow)">
+                    Fuck Around
+                </text>
+                
+                <text class="axis-label y-axis-label" x="70" y="220" 
+                      fill="#fff" font-size="28" font-weight="bold" text-anchor="middle"
+                      letter-spacing="2"
+                      transform="rotate(-90, 70, 220)"
+                      filter="url(#glow)">
+                    Find Out
+                </text>
+            </svg>
+        </div>
+        <div class="image-container">
+            <img src="images/fafo.jpg" alt="FAFO">
+        </div>
+    </div>
+    
+    <div class="track">
+        <h2 class="links-label">Links</h2>
+        <div class="track-card">
+            <div class="track-links">
+                <a href="https://dexscreener.com/solana/DcUwezFD5HaRKupjxw82d91S7fh3Qn7gGagHZNKEbonk" target="dex">
+                    <img src="Icons/dexscrenner.png" alt="Dexscreener"> </a>
+                <a href="https://x.com/i/communities/2008295592624046102" target="x">
+                    <img src="Icons/x.png" alt="X Community"> </a>
+                <a href="https://www.mobyscreener.com/solana/DcUwezFD5HaRKupjxw82d91S7fh3Qn7gGagHZNKEbonk" target="_blank">
+                    <img src="Icons/mobyscreener.jpg" alt="Mobyscreener"> </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
